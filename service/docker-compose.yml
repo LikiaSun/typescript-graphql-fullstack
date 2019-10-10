@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+  noul_redis:
+    image: redis:5.0
+    container_name: noul_redis
+    networks:
+      - noul-develop
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ./db/redis/modules_data:/data
+
+  noul_postgres:
+    image: postgres:12-alpine
+    container_name: noul_postgres
+    networks:
+      - noul-develop
+    ports:
+      - "54320:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=noul
+    volumes:
+      - ./db/postgresql/data:/var/lib/postgresql/data
+
+networks:
+  noul-develop:
+    name: noul-develop
+    driver: bridge
