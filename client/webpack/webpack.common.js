@@ -2,6 +2,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -71,9 +72,41 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.resolve(__dirname, "..", "src/public/index.html"),
+      favicon: path.resolve(
+        __dirname,
+        "..",
+        "src/public/favicon_io/favicon.ico"
+      ),
+
       minify: {
         collapseWhitespace: true,
       },
+    }),
+    new WebpackPwaManifest({
+      name: "Noul | Most boring's Shop web",
+      short_name: "Noul",
+      description: "Boring shop web",
+      icons: [
+        {
+          src: path.resolve(
+            __dirname,
+            "..",
+            "src/public/favicon_io/favicon-16x16.png"
+          ),
+          size: "16x16",
+        },
+        {
+          src: path.resolve(
+            __dirname,
+            "..",
+            "src/public/favicon_io/favicon-32x32.png"
+          ),
+          size: "32x32",
+        },
+      ],
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
     }),
     new RobotstxtPlugin({
       filePath: path.resolve(__dirname, "..", "src/public/robots.txt"),
