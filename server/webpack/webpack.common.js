@@ -1,7 +1,9 @@
 const path = require("path");
+const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: ["src/main.ts"],
+  entry: ["./src/main.ts"],
   target: "node",
   devtool: "inline-source-map",
   output: {
@@ -20,4 +22,5 @@ module.exports = {
       },
     ],
   },
+  plugins: [new CleanWebpackPlugin(), new webpack.IgnorePlugin(/^hiredis$/)],
 };

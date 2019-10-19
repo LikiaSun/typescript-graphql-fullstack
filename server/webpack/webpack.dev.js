@@ -1,23 +1,12 @@
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const merge = require("webpack-merge");
-const nodeExternals = require("webpack-node-externals");
-const path = require("path");
 const webpack = require("webpack");
-
+const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = merge.smart(common, {
   mode: "development",
   devtool: "inline-source-map",
-  entry: ["webpack/hot/poll?1000", path.join(__dirname, "..", "src/main.ts")],
-  externals: [
-    nodeExternals({
-      whitelist: ["webpack/hot/poll?1000"],
-    }),
-  ],
-  plugins: [
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  externals: [nodeExternals()],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   watch: true,
 });

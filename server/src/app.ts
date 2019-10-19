@@ -33,4 +33,8 @@ app.use(
   })
 );
 
+app.get("/prob", (_req, res) => {
+  res.send("Exist");
+});
+
 export default app;
