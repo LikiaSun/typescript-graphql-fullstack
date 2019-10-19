@@ -103,6 +103,30 @@ module.exports = {
           ),
           size: "32x32",
         },
+        {
+          src: path.resolve(
+            __dirname,
+            "..",
+            "src/public/favicon_io/apple-touch-icon.png"
+          ),
+          size: "180x180",
+        },
+        {
+          src: path.resolve(
+            __dirname,
+            "..",
+            "src/public/favicon_io/android-chrome-192x192.png"
+          ),
+          size: "192x192",
+        },
+        {
+          src: path.resolve(
+            __dirname,
+            "..",
+            "src/public/favicon_io/android-chrome-512x512.png"
+          ),
+          size: "512x512",
+        },
       ],
       theme_color: "#ffffff",
       background_color: "#ffffff",
