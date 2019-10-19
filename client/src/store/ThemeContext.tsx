@@ -1,15 +1,18 @@
 import React from "react";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import { indigo } from "@material-ui/core/colors";
 
-export const baseTheme = createMuiTheme({
+export const light = createMuiTheme({
   palette: {
-    secondary: {
-      main: indigo[500],
-    },
+    type: "light",
+  },
+});
+
+export const dark = createMuiTheme({
+  palette: {
+    type: "dark",
   },
 });
 
 export const ThemeProvider = (props: any) => {
-  return <MuiThemeProvider theme={baseTheme} {...props} />;
+  return <MuiThemeProvider theme={dark} {...props} />;
 };
