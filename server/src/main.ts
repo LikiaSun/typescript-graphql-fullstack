@@ -1,16 +1,21 @@
+import "reflect-metadata";
 import { config } from "dotenv";
 config();
 
 import http from "http";
 
 import app from "./app";
-import { AddressInfo } from "net";
+import { createConnection } from "typeorm";
 
 const httpServer = http.createServer(app);
 
-httpServer.listen(app.get("port"), () => {
-  const { port } = httpServer.address() as AddressInfo;
-  console.log(`Server is running on port ${port}`);
-});
+const main = async () => {
+  await createConnection();
+  httpServer.listen(app.get("port"), () => {
+    console.log(`Server is running on port 9999`);
+  });
+};
 
 export default httpServer;
+
+main();

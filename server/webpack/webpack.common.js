@@ -1,6 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = {
   entry: ["./src/main.ts"],
@@ -22,5 +24,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new webpack.IgnorePlugin(/^hiredis$/)],
+  plugins: [
+    new Dotenv({
+      path: path.resolve(__dirname, "..", ".env"),
+    }),
+    new CleanWebpackPlugin(),
+    new webpack.IgnorePlugin(/^hiredis$/),
+    new HardSourceWebpackPlugin(),
+  ],
 };
