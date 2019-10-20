@@ -11,7 +11,7 @@ services:
       - ./db/redis/modules_data:/data
 
   noul_postgres:
-    image: postgres:12-alpine
+    image: postgres:11.5-alpine
     container_name: noul_postgres
     networks:
       - noul-develop
